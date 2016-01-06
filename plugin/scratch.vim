@@ -9,7 +9,7 @@ endif
 let g:loaded_scratch = 1
 
 "autocmd BufNewFile __Scratch__ call s:makeBufferScratch()
-command! -nargs=0 -bar ScratchToggle call s:scratchToggle()
+command -nargs=0 -bar ScratchToggle call s:scratchToggle()
 
 let scratchBufName = "__Scratch__"
 let scratchWinWidth = 60
@@ -18,7 +18,7 @@ let scratchWinWidth = 60
 " 	return	0	all ok
 " 			1	current window is target window 
 " 			-1	buffer not displayed in any window
-function! s:switchWindow(bufNr)
+function s:switchWindow(bufNr)
 	let winNr = bufwinnr(a:bufNr)
 
 	" buffer not displayed
@@ -39,7 +39,7 @@ endfunction
 " 	if not exist				-> create
 " 	if exist but not displayed	-> display
 " 	if exist and displayed		-> switch to or close
-function! s:scratchToggle()
+function s:scratchToggle()
 	let scratchBufNr = bufnr(g:scratchBufName)
 
 	" check whether scratch buffer is already created
