@@ -2,14 +2,15 @@
 " 	s:switchWindow(bufNr)	switch to window that displays buffer bufNr
 " 	ToggleScratch()			toggle scratch buffer display
 
-if exists('loaded_scratch') || &cp
+if exists('g:loaded_scratch') || &compatible
     finish
 endif
+
+let g:loaded_scratch = 1
 
 "autocmd BufNewFile __Scratch__ call s:makeBufferScratch()
 command! -nargs=0 -bar ScratchToggle call s:scratchToggle()
 
-let loaded_scratch=1
 let scratchBufName = "__Scratch__"
 let scratchWinWidth = 60
 
