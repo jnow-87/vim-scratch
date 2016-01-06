@@ -11,7 +11,7 @@ command! -nargs=0 -bar ScratchToggle call s:scratchToggle()
 
 let loaded_scratch=1
 let scratchBufName = "__Scratch__"
-let scratchWinWidth = 20
+let scratchWinWidth = 60
 
 " switch to window that displays buffer bufNr
 " 	return	0	all ok
