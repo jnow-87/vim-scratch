@@ -44,17 +44,7 @@ function s:scratchToggle()
 
 	" check whether scratch buffer is already created
 	if scratchBufNr == -1
-		let r = s:switchWindow(bufnr(g:TagList_title))
-
-		if r == -1
-			" taglist window not display
-			" so open new scratch buffer
-			exe "botright " . g:scratchWinWidth . "vsplit" . g:scratchBufName
-		else
-			" successfull switched
-			" so open scratch in taglist window
-			exe "below split" . g:scratchBufName
-		endif
+		exe "botright " . g:scratchWinWidth . "vsplit" . g:scratchBufName
 
 		setlocal buftype=nofile
 		setlocal bufhidden=hide
@@ -69,15 +59,7 @@ function s:scratchToggle()
 			" already in, so close window
 			exe "quit"
 		elseif r == -1
-			" buffer not display, so open
-			" first check taglist window (see above)
-			let r = s:switchWindow(bufnr(g:TagList_title))
-
-			if r == -1
-				exe "botright " . g:scratchWinWidth . "vsplit +buffer" . scratchBufNr
-			else
-				exe "below split +buffer" . scratchBufNr
-			endif
+			exe "botright " . g:scratchWinWidth . "vsplit +buffer" . scratchBufNr
 		endif
 	endif
 endfunction
