@@ -8,12 +8,19 @@ endif
 
 let g:loaded_scratch = 1
 
-"autocmd BufNewFile __Scratch__ call s:makeBufferScratch()
-command -nargs=0 -bar ScratchToggle call s:scratchToggle()
 
+""""
+"" global variables
+""""
+"{{{
 let scratchBufName = "__Scratch__"
 let scratchWinWidth = 60
+"}}}
 
+""""
+"" global functions
+""""
+"{{{
 " switch to window that displays buffer bufNr
 " 	return	0	all ok
 " 			1	current window is target window 
@@ -34,7 +41,9 @@ function s:switchWindow(bufNr)
 	exe winNr . "wincmd w"
 	return 0
 endfunction
+"}}}
 
+"{{{
 " toggle the scratch buffer
 " 	if not exist				-> create
 " 	if exist but not displayed	-> display
@@ -50,6 +59,7 @@ function s:scratchToggle()
 		setlocal bufhidden=hide
 		setlocal noswapfile
 		setlocal buflisted
+		setlocal filetype=text
 
 	else
 		" switch to scratch buffer window
@@ -63,3 +73,10 @@ function s:scratchToggle()
 		endif
 	endif
 endfunction
+"}}}
+
+""""
+"" commands
+""""
+"autocmd BufNewFile __Scratch__ call s:makeBufferScratch()
+command -nargs=0 -bar ScratchToggle call s:scratchToggle()
